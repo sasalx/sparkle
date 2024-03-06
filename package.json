@@ -1,0 +1,22 @@
+{
+  "name": "sparkle",
+  "version": "0.0.1",
+  "description": "Personal discord bot",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "start": "node dist/main.js",
+    "build": "tsup src/main.ts --minify"
+  },
+  "author": "sasalx",
+  "license": "GNU GPL V3.0",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "tsup": "^8.0.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  }
+}
