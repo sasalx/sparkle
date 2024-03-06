@@ -5,7 +5,13 @@
   "scripts": {
     "dev": "tsx watch src/main.ts",
     "start": "node dist/main.js",
-    "build": "tsup src/main.ts --minify"
+    "build": "tsup src/main.ts --minify",
+    "format": "npm run format:prettier",
+    "format:prettier": "prettier --ignore-path .gitignore --ignore-path .prettierignore --write --list-different .",
+    "lint": "npm run lint:eslint && npm run lint:typescript && npm run lint:prettier",
+    "lint:eslint": "eslint --max-warnings=0 --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "lint:prettier": "prettier --ignore-path .gitignore --ignore-path .prettierignore --check .",
+    "lint:typescript": "tsc --noEmit"
   },
   "author": "sasalx",
   "license": "GNU GPL V3.0",
@@ -14,7 +20,13 @@
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20.11.24",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"
