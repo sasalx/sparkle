@@ -16,6 +16,7 @@
   "author": "sasalx",
   "license": "GNU GPL V3.0",
   "dependencies": {
+    "@discordjs/rest": "^2.2.0",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5"
   },

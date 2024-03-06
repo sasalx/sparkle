@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@discordjs/rest':
+    specifier: ^2.2.0
+    version: 2.2.0
   discord.js:
     specifier: ^14.14.1
     version: 14.14.1
