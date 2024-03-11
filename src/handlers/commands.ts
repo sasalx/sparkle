@@ -3,6 +3,7 @@ import { Client, Routes, SlashCommandBuilder } from 'discord.js';
 import fs from 'fs';
 import { join } from 'path';
 
+import { config } from '@/src/config';
 import { SlashCommand } from '@/src/types';
 
 // Note: Move to utils if needed
@@ -28,10 +29,10 @@ const handler = async (client: Client) => {
     }
   });
 
-  const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
+  const rest = new REST({ version: '10' }).setToken(config.DISCORD_TOKEN);
 
   rest
-    .put(Routes.applicationCommands(process.env.DISCORD_CLIENT_ID), {
+    .put(Routes.applicationCommands(config.DISCORD_CLIENT_ID), {
       body: slashCommands.map((command) => command.toJSON()),
     })
     .then((data: unknown) => {
