@@ -6,7 +6,15 @@ import { SlashCommand } from '@/src/types';
 
 import { config } from './config.ts';
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.MessageContent,
+  ],
+});
 const handlersDir = join(__dirname, './handlers');
 
 // Collection imports
