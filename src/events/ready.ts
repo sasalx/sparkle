@@ -6,7 +6,7 @@ const event: BotEvent = {
   name: 'ready',
   once: true,
   execute: (client: Client<true>) => {
-    console.log(`${client.user.tag} is realy to elate.`);
+    console.log(`${client.user.tag} is ready to elate.`);
   },
 };
 
