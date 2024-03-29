@@ -13,21 +13,26 @@ const listFilesInDirectory = async (path: string) =>
   );
 
 const handler = async (client: Client) => {
-  const slashCommands: SlashCommandBuilder[] = [];
+  const slashCommands: Omit<
+    SlashCommandBuilder,
+    'addSubcommand' | 'addSubcommandGroup'
+  >[] = [];
   const slashCommandsDir = join(__dirname, '../commands/slashCommands');
 
-  await listFilesInDirectory(slashCommandsDir).then((commandFileArray) => {
-    for (const commandFileName of commandFileArray) {
-      return import(`${slashCommandsDir}/${commandFileName}`).then(
-        (commandFile) => {
-          const command: SlashCommand = commandFile.default;
+  await listFilesInDirectory(slashCommandsDir).then(
+    async (commandFileArray) => {
+      for (const commandFileName of commandFileArray) {
+        await import(`${slashCommandsDir}/${commandFileName}`).then(
+          (commandFile) => {
+            const command: SlashCommand = commandFile.default;
 
-          slashCommands.push(command.command);
-          client.slashCommands.set(command.command.name, command);
-        },
-      );
-    }
-  });
+            slashCommands.push(command.command);
+            client.slashCommands.set(command.command.name, command);
+          },
+        );
+      }
+    },
+  );
 
   const rest = new REST({ version: '10' }).setToken(config.DISCORD_TOKEN);
 

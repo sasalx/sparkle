@@ -16,11 +16,10 @@ export interface BotEvent {
 }
 
 export interface SlashCommand {
-  command: SlashCommandBuilder;
+  command: Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
   execute: (interaction: ChatInputCommandInteraction) => void;
   autocomplete?: (interaction: AutocompleteInteraction) => void;
   modal?: (interaction: ModalSubmitInteraction<CacheType>) => void;
-  cooldown?: number;
 }
 
 export interface Command {
@@ -28,7 +27,6 @@ export interface Command {
   execute: (message: Message, args: Array<string>) => void;
   permissions: Array<PermissionResolvable>;
   aliases: Array<string>;
-  cooldown?: number;
 }
 
 declare global {
@@ -44,6 +42,5 @@ declare module 'discord.js' {
   export interface Client {
     slashCommands: Collection<string, SlashCommand>;
     commands: Collection<string, Command>;
-    cooldowns: Collection<string, number>;
   }
 }
